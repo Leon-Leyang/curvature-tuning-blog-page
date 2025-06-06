@@ -24,8 +24,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <title>Curvature Tuning: Provable Training-free Model Steering From a Single Parameter</title>
+  <link rel="icon" type="image/x-icon" href="static/images/spline.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -43,6 +43,17 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>  
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 </head>
 <body>
 
@@ -52,20 +63,24 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">Curvature Tuning: Provable Training-free Model Steering From a Single Parameter</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                Leyang Hu<sup>*</sup><br>
+                Brown University
+              </span>
+              <span class="author-block">
+                <a href="https://www.matteogamba.me/" target="_blank">Matteo Gamba</a><sup>*</sup><br>
+                KTH
+              </span>
+              <span class="author-block">
+                <a href="https://randallbalestriero.github.io/" target="_blank">Randall Balestriero</a><br>
+                Brown University
+              </span>
+            </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
                     <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
                   </div>
 
@@ -73,7 +88,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        <a href="https://arxiv.org/pdf/2502.07783" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -83,7 +98,7 @@
                     </span>
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                    <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -91,11 +106,11 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/Leon-Leyang/curvature-tuning" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -105,13 +120,13 @@
                 </span>
 
                 <!-- ArXiv abstract Link -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv</span> -->
                 </a>
               </span>
             </div>
@@ -123,22 +138,27 @@
 </section>
 
 
-<!-- Teaser video-->
+<!-- Teaser image -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
+      <img src="static/images/ct_working_meachanism.png" alt="Teaser Image" style="width: 100%; height: auto;" />
+
+      <div class="content" style="text-align: left; margin-top: 1rem;">
+        <p>
+          Illustration of Curvature Tuning (CT) on classification (top) and regression (bottom) tasks. 
+          <strong>CT steers a pretrained model by replacing ReLUs with a &beta;-parameterized activation function and tuning &beta; from 1 to 0, effectively modulating the model’s decision boundary curvature.</strong>
+        </p>
+      </div>
+
+      <p style="font-size: 0.75em; font-style: italic; margin-top: 0.5em; color: #555;">
+        * The pretrained model for classification is a 3-layer MLP with hidden width 20 trained for 2000 steps; for regression, it is a 9-layer MLP with hidden width 64 trained for 20000 steps.
+      </p>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
+
+<!-- End teaser image -->
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -148,8 +168,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
+            The scaling of model and data sizes has reshaped the AI landscape, establishing finetuning pretrained models as the standard paradigm for solving downstream tasks. 
+            However, dominant finetuning methods typically rely on weight adaptation, often lack interpretability, and depend on heuristically chosen hyperparameters. 
+            In this paper, we take a different perspective and shift the focus from weights to activation functions, viewing them through the lens of spline operators. 
+            We propose <strong>Curvature Tuning (CT)</strong>, an interpretable and principled steering method that modulates a model's decision boundary by injecting a single hyperparameter into its activation functions. 
+            We show that CT provably adjusts model decision boundary curvature and, more fundamentally, projects a model onto a space of smooth functions—thereby complementing current finetuning methods, whose effect lies primarily in feature adaptation. 
+            Making this hyperparameter trainable gives rise to a novel and highly parameter-efficient finetuning method. 
+            Empirically, CT improves both generalization and robustness. 
+            For example, it boosts downstream accuracy of ResNet-50/152 by 7.14%/8.46% over linear probing and 4.64%/1.70% over LoRA across 12 datasets, and improves robust accuracy on the $\ell_{\infty}$ benchmark from RobustBench by 1032.64%/1494.46%. 
+            Our code is available <a href="https://github.com/Leon-Leyang/curvature-tuning" target="_blank"><strong><u>here</u></strong></a>
+          </p>          
         </div>
       </div>
     </div>
@@ -157,132 +185,347 @@
 </section>
 <!-- End paper abstract -->
 
+<!-- Teaser image: Toy example -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3" style="margin-top: 2rem;">Why CT?</h2>
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+      <!-- Introductory text -->
+      <div class="content" style="text-align: left;">
+        <p>
+          Modulating model non-linearities improves a model's local expressivity, while changing (but not adding) the model's weights alone cannot, making CT a complementary method to current finetuning approaches like LoRA.
+          A toy example demonstrating the advantage of modulating non-linearities, particularly under limited model capacity, is shown below:
+        </p>
+      </div>      
 
+      <!-- Image grid -->
+      <div class="columns is-multiline is-variable is-1 is-centered">
+        <!-- Top row -->
+        <div class="column is-one-third has-text-centered">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_baseline_width12_depth1.png" alt="Baseline (0.1036)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline (0.1036)</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_lora_width12_depth1.png" alt="LoRA (0.0501)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA (0.0501)</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third has-text-centered">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_ct_width12_depth1_beta0.30.png" alt="CT (0.0035)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT (0.0035)</figcaption>
+          </figure>
+        </div>
 
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+        <!-- Bottom row -->
+        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_baseline_width18_depth1.png" alt="Baseline (0.0406)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline (0.0406)</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_lora_width18_depth1.png" alt="LoRA (0.0029)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA (0.0029)</figcaption>
+          </figure>
+        </div>
+        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
+          <figure class="image" style="max-width: 60%; margin: 0 auto;">
+            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_ct_width18_depth1_beta0.60.png" alt="CT (0.0009)">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT (0.0009)</figcaption>
+          </figure>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
 
+      <p style="font-size: 0.75em; font-style: italic; margin-top: 1em; color: #555;">
+        * Values in parentheses denote final binary cross-entropy loss.
+        Top row: 2-layer MLP with hidden width 12. (a) Baseline trained for 4000 steps, then fine-tuned for another 4000 steps using (b) LoRA (<span style="font-family: monospace;">r = 1</span>, <span style="font-family: monospace;">α = 1</span>) and (c) <em>Trainable CT</em>.
+        Bottom row: same setup with hidden width increased to 18.
+      </p>
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
+      <!-- Caption -->
+      <div class="content" style="text-align: left; margin-top: 1.5em;">
+        <p>
+          CT consistently achieves near-optimal loss regardless of model capacity, while methods operating solely on weights (e.g., LoRA) only approach optimality with higher model capacity.
+        </p>
+      </div>      
+      
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+<!-- End teaser image -->
 
+<!-- Implementation of CT -->
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="margin-top: 2rem;">
+      <h2 class="title is-3">Implementation of CT</h2>
 
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+      <!-- Introductory text -->
+      <div class="content" style="text-align: left;">
+        <p>
+          We begin by presenting the core activation that gives CT its expressive power—referred to as <strong>CT Unit (CTU)</strong>:
+        </p>
+        <p>
+          \[
+          \varphi_{\beta,c}(\mathbf{x}) = c \cdot \sigma\left(\frac{\beta \mathbf{x}}{1 - \beta}\right) \cdot \mathbf{x} + (1 - c) \cdot \ln\left[1 + \exp\left(\frac{\mathbf{x}}{1 - \beta}\right)\right] \cdot (1 - \beta)
+          \]
+        </p>
+        <p>
+          where $\beta \in \left[0, 1\right)$ modulates the curvature, $c \in \left[0, 1\right]$ is the mixing coefficient, and $\sigma(\cdot)$ denotes the sigmoid function. This is essentially a convex combination of reparameterized SiLU and SoftPlus:
+        </p>
+        <p>
+          \[
+          \text{SiLU}(\mathbf{x}) = \sigma(\eta \mathbf{x}) \cdot \mathbf{x},\quad \eta = \frac{\beta}{1 - \beta};\qquad 
+          \text{SoftPlus}(\mathbf{x}) = \frac{1}{\gamma} \cdot \ln\left[1 + \exp\left(\gamma \mathbf{x}\right)\right],\quad \gamma = \frac{1}{1 - \beta}
+          \]
+        </p>
+        <p>We provide two implementations of CT differing in how CTU is applied:</p>
+        <ul style="margin-top: 1em;">
+          <li>
+            <strong><em>CT</em> (for model steering):</strong> Replaces all ReLUs in the network with CTUs using a fixed \( c = 0.5 \) and a shared \( \beta \in [0, 1) \). This version is highly parameter-efficient—introducing only a single hyperparameter—and does not require backpropagation, making it suitable as a lightweight steering method.
+          </li>
+          <li style="margin-top: 0.75em;">
+            <strong><em>Trainable CT</em> (for model finetuning):</strong> Also replaces all ReLUs with CTUs, but assigns each output neuron its own trainable pair \( (\beta, c) \), optimized via backpropagation. While it introduces additional parameters, the increase is modest compared to methods like LoRA and yields improved performance.
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
-<!--End paper poster -->
+  </div>
+</section>
+<!-- End Implementation of CT -->
 
+<!-- Results -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="margin-top: 2rem;">
+      <h2 class="title is-3">Results</h2>
+      <h3 class="subtitle is-4" style="margin-top: 0.75rem; color: #555;"><strong>CT improves generalization</strong></h3>
+
+      <!-- Introductory text -->
+      <div class="content" style="text-align: left;">
+        <p>
+          Mean accuracy (%) over three runs of ImageNet-pretrained ResNet-18/50/152 when transferred to 12 downstream datasets. 
+        </p>
+        <p style="font-size: 0.75em; font-style: italic; color: #555;">
+          * The second row under each method indicates the number of trainable parameters (excluding the linear classifier).
+        </p>
+      </div>
+
+      <style>
+        .table thead tr:nth-child(2) th {
+          text-align: center;
+          vertical-align: middle;
+        }
+        .table td:not(:first-child),
+        .table thead tr:nth-child(1) th:not(:first-child) {
+          text-align: center;
+          vertical-align: middle;
+        }
+      </style>
+
+      <!-- Scrollable generalization table -->
+      <div style="overflow-x: auto;">
+        <table class="table is-bordered is-striped is-fullwidth" style="font-size: 0.85em;">
+          <thead>
+            <tr>
+              <th rowspan="2">Dataset</th>
+              <th colspan="4">ResNet-18</th>
+              <th colspan="4">ResNet-50</th>
+              <th colspan="4">ResNet-152</th>
+            </tr>
+            <tr>
+              <th>Frozen<br><small>(0)</small></th>
+              <th><em>CT</em><br><small>(1)</small></th>
+              <th>LoRA<br><small>(35923)</small></th>
+              <th><em>Train CT</em><br><small>(3968)</small></th>
+
+              <th>Frozen<br><small>(0)</small></th>
+              <th><em>CT</em><br><small>(1)</small></th>
+              <th>LoRA<br><small>(79443)</small></th>
+              <th><em>Train CT</em><br><small>(45440)</small></th>
+
+              <th>Frozen<br><small>(0)</small></th>
+              <th><em>CT</em><br><small>(1)</small></th>
+              <th>LoRA<br><small>(243283)</small></th>
+              <th><em>Train CT</em><br><small>(143744)</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Arabic Characters</td><td>81.91</td><td>87.65</td><td>93.37</td><td><strong>93.76</strong></td><td>80.65</td><td>83.66</td><td>94.21</td><td><strong>95.67</strong></td><td>79.86</td><td>79.21</td><td>95.96</td><td><strong>96.47</strong></td></tr>
+            <tr><td>Arabic Digits</td><td>97.93</td><td>98.77</td><td><strong>99.08</strong></td><td>99.03</td><td>98.33</td><td>98.37</td><td>99.08</td><td><strong>99.16</strong></td><td>98.07</td><td>98.15</td><td><strong>99.15</strong></td><td>99.10</td></tr>
+            <tr><td>Beans</td><td>87.76</td><td>90.36</td><td>93.23</td><td><strong>94.01</strong></td><td>89.58</td><td>91.93</td><td>94.79</td><td><strong>95.57</strong></td><td>87.50</td><td>87.50</td><td>93.75</td><td><strong>96.35</strong></td></tr>
+            <tr><td>CUB-200</td><td>62.84</td><td>63.18</td><td>54.83</td><td><strong>64.30</strong></td><td>65.23</td><td>64.62</td><td>66.17</td><td><strong>71.03</strong></td><td>67.68</td><td>68.15</td><td>70.59</td><td><strong>73.04</strong></td></tr>
+            <tr><td>DTD</td><td>62.80</td><td>62.66</td><td>54.36</td><td><strong>63.62</strong></td><td><strong>67.34</td><td>66.91</td><td>64.70</td><td>65.07</td><td>66.97</td><td><strong>66.99</strong></td><td>66.63</td><td>63.39</td></tr>
+            <tr><td>FashionMNIST</td><td>88.63</td><td>88.70</td><td><strong>91.65</strong></td><td>91.07</td><td>90.05</td><td>90.34</td><td>92.19</td><td><strong>92.78</strong></td><td>90.44</td><td>90.51</td><td>92.77</td><td><strong>93.39</strong></td></tr>
+            <tr><td>FGVC-Aircraft</td><td>36.80</td><td>38.68</td><td>29.19</td><td><strong>46.44</strong></td><td>38.03</td><td>41.16</td><td>41.99</td><td><strong>55.70</strong></td><td>38.74</td><td>38.51</td><td>48.84</td><td><strong>58.16</strong></td></tr>
+            <tr><td>Flowers102</td><td>80.86</td><td>81.97</td><td>67.53</td><td><strong>86.55</strong></td><td>84.00</td><td>83.84</td><td>82.58</td><td><strong>87.62</strong></td><td>82.98</td><td>83.28</td><td><strong>84.40</strong></td><td>83.43</td></tr>
+            <tr><td>Food101</td><td>61.41</td><td>62.27</td><td>64.40</td><td><strong>66.04</strong></td><td>68.06</td><td>68.02</td><td>71.42</td><td><strong>73.60</strong></td><td>71.11</td><td>71.13</td><td>74.66</td><td><strong>76.08</strong></td></tr>
+            <tr><td>DermaMNIST</td><td>74.83</td><td>75.05</td><td>74.21</td><td><strong>77.66</strong></td><td>75.94</td><td>75.89</td><td>75.73</td><td><strong>78.02</strong></td><td>75.68</td><td>76.23</td><td>76.91</td><td><strong>77.94</strong></td></tr>
+            <tr><td>OCTMNIST</td><td>65.03</td><td>67.27</td><td><strong>74.27</strong></td><td>69.53</td><td>67.53</td><td>68.00</td><td><strong>75.90</strong></td><td>74.13</td><td>69.27</td><td>69.10</td><td><strong>76.43</strong></td><td>75.17</td></tr>
+            <tr><td>PathMNIST</td><td>86.77</td><td>87.51</td><td><strong>87.62</strong></td><td>87.17</td><td>90.08</td><td><strong>90.26</strong></td><td>85.43</td><td>87.33</td><td><strong>89.91</td><td>89.82</td><td>84.94</td><td>83.60</td></tr>
+            <tr><td><strong>Average</strong></td><td>73.96</td><td>75.34</td><td>73.64</td><td><strong>78.26</strong></td><td>76.24</td><td>76.92</td><td>78.68</td><td><strong>81.31</strong></td><td>76.52</td><td>76.55</td><td>80.42</td><td><strong>81.34</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content" style="text-align: left;">
+        <p style="margin-top: 1em;">
+          <strong><em>CT</em> outperforms linear probing on the frozen backbone by an average of 1.97%, 1.16%, and 0.02% for ResNet-18/50/152 respectively, and <em>Trainable CT</em> surpasses LoRA (rank 1) by 10.20%, 4.64% and 1.70%.</strong>
+        </p>
+      </div>
+
+      <!-- Robustness subsection -->
+      <h3 class="subtitle is-4" style="margin-top: 3rem; color: #555;"><strong>CT improves robustness</strong></h3>
+
+      <div class="content" style="text-align: left;">
+        <p>
+          Mean robust accuracy (%) over three runs of ImageNet-pretrained ResNet-18/50/152 under $\ell_2$/$\ell_\infty$ attacks and common corruptions on CIFAR-10/100 and ImageNet.
+        </p>
+      </div>
+
+      <!-- Scrollable robustness table -->
+      <div style="overflow-x: auto;">
+        <table class="table is-bordered is-striped is-fullwidth" style="font-size: 0.85em;">
+          <thead>
+            <tr>
+              <th rowspan="2">Model</th>
+              <th rowspan="2">Dataset</th>
+              <th colspan="3">$\ell_2$</th>
+              <th colspan="3">$\ell_\infty$</th>
+              <th colspan="3">Corruption</th>
+            </tr>
+            <tr>
+              <th>Base</th><th><em>CT</em></th><th style="color:gray;">$\beta$</th>
+              <th>Base</th><th><em>CT</em></th><th style="color:gray;">$\beta$</th>
+              <th>Base</th><th><em>CT</em></th><th style="color:gray;">$\beta$</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="4">ResNet18</td><td>CIFAR10</td><td>53.67</td><td>53.67</td><td style="color:gray;">1.00</td><td>11.17</td><td><strong>14.93</strong></td><td style="color:gray;">0.90</td><td>77.73</td><td>77.73</td><td style="color:gray;">1.00</td></tr>
+            <tr><td style="text-align: center;">CIFAR100</td><td>24.30</td><td><strong>25.50</strong></td><td style="color:gray;">0.92</td><td>4.47</td><td><strong>6.90</strong></td><td style="color:gray;">0.92</td><td>51.81</td><td><strong>51.95</strong></td><td style="color:gray;">0.94</td></tr>
+            <tr><td style="text-align: center;">ImageNet</td><td>23.37</td><td>23.37</td><td style="color:gray;">1.00</td><td>0.00</td><td><strong>7.00</strong></td><td style="color:gray;">0.89</td><td>33.11</td><td><strong>33.32</strong></td><td style="color:gray;">0.92</td></tr>
+            <tr><td style="text-align: center;"><strong>Average</strong></td><td>33.78</td><td><strong>34.18</strong></td><td style="color:gray;">0.97</td><td>5.21</td><td><strong>9.61</strong></td><td style="color:gray;">0.90</td><td>54.22</td><td><strong>54.33</strong></td><td style="color:gray;">0.95</td></tr>
+
+            <tr><td rowspan="4">ResNet50</td><td>CIFAR10</td><td>55.10</td><td><strong>56.53</strong></td><td style="color:gray;">0.97</td><td>10.10</td><td><strong>12.08</strong></td><td style="color:gray;">0.90</td><td>77.26</td><td>77.26</td><td style="color:gray;">1.00</td></tr>
+            <tr><td style="text-align: center;">CIFAR100</td><td>23.83</td><td><strong>25.80</strong></td><td style="color:gray;">0.96</td><td>4.43</td><td><strong>7.90</strong></td><td style="color:gray;">0.93</td><td>53.91</td><td><strong>53.93</strong></td><td style="color:gray;">0.98</td></tr>
+            <tr><td style="text-align: center;">ImageNet</td><td>31.90</td><td>31.90</td><td style="color:gray;">1.00</td><td>0.30</td><td><strong>9.30</strong></td><td style="color:gray;">0.93</td><td>39.64</td><td>39.64</td><td style="color:gray;">1.00</td></tr>
+            <tr><td style="text-align: center;"><strong>Average</strong></td><td>36.94</td><td><strong>38.08</strong></td><td style="color:gray;">0.98</td><td>4.94</td><td><strong>10.68</strong></td><td style="color:gray;">0.94</td><td>56.94</td><td>56.94</td><td style="color:gray;">0.99</td></tr>
+
+            <tr><td rowspan="4">ResNet152</td><td>CIFAR10</td><td>56.27</td><td>56.27</td><td style="color:gray;">1.00</td><td>11.47</td><td><strong>15.00</strong></td><td style="color:gray;">0.99</td><td>78.82</td><td><strong>78.83</strong></td><td style="color:gray;">0.99</td></tr>
+            <tr><td style="text-align: center;">CIFAR100</td><td>27.90</td><td><strong>28.23</strong></td><td style="color:gray;">0.98</td><td>5.40</td><td><strong>7.70</strong></td><td style="color:gray;">0.99</td><td>56.12</td><td>56.12</td><td style="color:gray;">1.00</td></tr>
+            <tr><td style="text-align: center;">ImageNet</td><td>42.50</td><td>42.50</td><td style="color:gray;">1.00</td><td>0.30</td><td><strong>13.53</strong></td><td style="color:gray;">0.97</td><td>45.47</td><td>45.47</td><td style="color:gray;">0.99</td></tr>
+            <tr><td style="text-align: center;"><strong>Average</strong></td><td>42.22</td><td><strong>42.33</strong></td><td style="color:gray;">0.99</td><td>5.72</td><td><strong>12.08</strong></td><td style="color:gray;">0.98</td><td>60.14</td><td>60.14</td><td style="color:gray;">0.99</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="content" style="text-align: left;">
+        <p style="margin-top: 1em;">
+          <strong><em>CT</em> yields substantial improvements under $\ell_\infty$ attacks (average gains of 44.01%/1032.64%/1494.46% for ResNet-18/50/152 respectively), moderate gains under $\ell_2$ attacks (1.65%/3.62%/0.39%), and marginal improvements (0.30%/0.01%/0.00%) under corruptions, with the selected $\beta$ values generally close to 1.</strong>
+        </p>
+      </div>
+
+      <!-- CT on Transformers subsection -->
+      <h3 class="subtitle is-4" style="margin-top: 2rem; color: #555;"><strong>CT also works on Transformers</strong></h3>
+
+      <div class="content" style="text-align: left;">
+        <p>
+          Mean accuracy (%) over three runs of Imagenette-pretrained Swin-T/S when transferred to 12 downstream datasets.
+        </p>
+        <p style="font-size: 0.75em; font-style: italic; color: #555;">
+          * The second row under each method indicates the number of trainable parameters (excluding the linear classifier).
+        </p>
+      </div>
+
+      <!-- Scrollable table for Swin results -->
+      <div style="overflow-x: auto;">
+        <table class="table is-bordered is-striped is-fullwidth" style="font-size: 0.85em; ">
+          <thead>
+            <tr>
+              <th rowspan="2">Dataset</th>
+              <th colspan="4">Swin-T</th>
+              <th colspan="4">Swin-S</th>
+            </tr>
+            <tr>
+              <th>Frozen<br><small>(0)</small></th>
+              <th><em>CT</em><br><small>(1)</small></th>
+              <th>LoRA<br><small>(74832)</small></th>
+              <th><em>Train CT</em><br><small>(532)</small></th>
+
+              <th>Frozen<br><small>(0)</small></th>
+              <th><em>CT</em><br><small>(1)</small></th>
+              <th>LoRA<br><small>(148560)</small></th>
+              <th><em>Train CT</em><br><small>(868)</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Arabic Characters</td><td>30.67</td><td>31.08</td><td><strong>56.32</strong></td><td>41.95</td><td>31.81</td><td>31.16</td><td><strong>62.16</strong></td><td>40.88</td></tr>
+            <tr><td>Arabic Digits</td><td>83.71</td><td>85.24</td><td><strong>97.54</strong></td><td>90.82</td><td>80.74</td><td>81.11</td><td><strong>97.91</strong></td><td>91.44</td></tr>
+            <tr><td>Beans</td><td>60.68</td><td>61.46</td><td><strong>75.52</strong></td><td>68.49</td><td>55.99</td><td>54.43</td><td><strong>73.96</strong></td><td>67.71</td></tr>
+            <tr><td>CUB-200</td><td>4.82</td><td>4.87</td><td><strong>7.42</strong></td><td>6.09</td><td>4.46</td><td>4.02</td><td><strong>9.19</strong></td><td>6.71</td></tr>
+            <tr><td>DTD</td><td>15.92</td><td>15.90</td><td>16.99</td><td><strong>17.04</strong></td><td>16.03</td><td>15.78</td><td><strong>18.67</strong></td><td>17.66</td></tr>
+            <tr><td>FashionMNIST</td><td>73.81</td><td>74.01</td><td><strong>83.90</strong></td><td>77.07</td><td>73.28</td><td>73.29</td><td><strong>86.15</strong></td><td>75.76</td></tr>
+            <tr><td>FGVC-Aircraft</td><td>4.57</td><td>4.47</td><td>5.59</td><td><strong>6.14</strong></td><td>4.61</td><td>4.74</td><td><strong>6.55</strong></td><td>6.16</td></tr>
+            <tr><td>Flowers102</td><td>14.09</td><td>14.01</td><td><strong>16.66</strong></td><td>16.53</td><td>12.93</td><td>13.12</td><td>17.28</td><td><strong>17.99</strong></td></tr>
+            <tr><td>Food101</td><td>14.85</td><td>14.79</td><td><strong>18.17</strong></td><td>15.20</td><td>14.22</td><td>14.28</td><td><strong>19.41</strong></td><td>14.50</td></tr>
+            <tr><td>DermaMNIST</td><td>70.24</td><td>70.99</td><td><strong>74.08</strong></td><td>71.37</td><td>69.23</td><td>70.34</td><td><strong>73.93</strong></td><td>70.59</td></tr>
+            <tr><td>OCTMNIST</td><td>49.60</td><td>51.37</td><td><strong>63.53</strong></td><td>53.23</td><td>48.07</td><td>47.93</td><td><strong>63.90</strong></td><td>51.23</td></tr>
+            <tr><td>PathMNIST</td><td>76.73</td><td>77.78</td><td><strong>81.31</strong></td><td>77.35</td><td>74.82</td><td>76.54</td><td>76.62</td><td><strong>78.59</strong></td></tr>
+            <tr><td><strong>Average</strong></td><td>41.64</td><td>42.16</td><td><strong>49.75</strong></td><td>45.11</td><td>40.52</td><td>40.56</td><td><strong>50.48</strong></td><td>44.94</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="content" style="text-align: left;">
+        <p style="margin-top: 1em;">
+          <strong><em>CT</em> outperforms linear probing on Swin-T by an average of 0.68% but underperforms it on Swin-S by 0.58%. Meanwhile, <em>Trainable CT</em> significantly improves over linear probing on both models—by 13.32% and 17.93%, respectively—though it underperforms LoRA by 8.29% and 11.89%.</strong>
+        </p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+<!-- End Results -->
+
+<!-- Theory section -->
+<section class="hero teaser is-light">
+  <div class="container is-max-desktop">
+    <div class="hero-body" style="padding-top: 2rem;">
+      <h2 class="title is-3">What CT is doing behind the scenes</h2>
+      <div class="content" style="text-align: left;">
+        <p>
+          Theoretically, CT projects a ReLU-based model to a space of smooth functions.
+        </p>
+
+        <p><strong>Theorem:</strong></p>
+        <p style="font-family: monospace;">
+          For a ReLU network \( f: \mathbb{R}^d \to \mathbb{R} \) with parameter \( \mathbf{W} \) (collecting all weights and biases), for \( c \in [0, 1] \) and fixed \( \beta \in [0,1) \), replacing every instance of ReLU with a CTU with hyperparameters \( \beta, c \) is equivalent to projecting \( f \) to a smooth function \( f_{\beta,c} \) with bounded gradients and curvature, while keeping \( \mathbf{W} \) fixed. Importantly, for \( 0 < \beta < 1 \), \( f_{\beta,c} \) enjoys higher local expressivity than \( f \) for the same parameter \( \mathbf{W} \), due to non-vanishing local curvature.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@misc{hu2025curvaturetuningprovabletrainingfree,
+      title={Curvature Tuning: Provable Training-free Model Steering From a Single Parameter}, 
+      author={Leyang Hu and Matteo Gamba and Randall Balestriero},
+      year={2025},
+      eprint={2502.07783},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.07783}, 
+}</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
-
 
   <footer class="footer">
   <div class="container">
@@ -292,8 +535,6 @@
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
         </div>
