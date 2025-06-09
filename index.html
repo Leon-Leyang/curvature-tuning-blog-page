@@ -142,7 +142,7 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/ct_working_meachanism.png" alt="Teaser Image" style="width: 100%; height: auto;" />
+      <img src="static/images/ct_working_meachanism.gif" alt="Teaser Image" style="width: 100%; height: auto;" />
 
       <div class="content" style="text-align: left; margin-top: 1rem;">
         <p>
@@ -195,63 +195,39 @@
       <div class="content" style="text-align: left;">
         <p>
           Modulating model non-linearities improves a model's local expressivity, while changing (but not adding) the model's weights alone cannot, making CT a complementary method to current finetuning approaches like LoRA.
-          A toy example demonstrating the advantage of modulating non-linearities, particularly under limited model capacity, is shown below:
+          A toy example demonstrating the advantage of modulating non-linearities is shown below:
         </p>
       </div>      
 
       <!-- Image grid -->
       <div class="columns is-multiline is-variable is-1 is-centered">
-        <!-- Top row -->
         <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_baseline_width12_depth1.png" alt="Baseline (0.1036)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline (0.1036)</figcaption>
-          </figure>
-        </div>
-        <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_lora_width12_depth1.png" alt="LoRA (0.0501)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA (0.0501)</figcaption>
+          <figure class="image" style="max-width: 70%; margin: 0 auto;">
+            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_base.png" alt="Baseline">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline</figcaption>
           </figure>
         </div>
         <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width12_depth1_beta0.30_ct_width12_depth1_beta0.30.png" alt="CT (0.0035)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT (0.0035)</figcaption>
+          <figure class="image" style="max-width: 70%; margin: 0 auto;">
+            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_lora.gif" alt="LoRA">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA</figcaption>
           </figure>
         </div>
-
-        <!-- Bottom row -->
-        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_baseline_width18_depth1.png" alt="Baseline (0.0406)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline (0.0406)</figcaption>
+        <div class="column is-one-third has-text-centered">
+          <figure class="image" style="max-width: 70%; margin: 0 auto;">
+            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_ct.gif" alt="CT">
+            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT</figcaption>
           </figure>
         </div>
-        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_lora_width18_depth1.png" alt="LoRA (0.0029)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA (0.0029)</figcaption>
-          </figure>
-        </div>
-        <div class="column is-one-third has-text-centered" style="margin-top: 1rem;">
-          <figure class="image" style="max-width: 60%; margin: 0 auto;">
-            <img src="static/images/demo_classification_new_width18_depth1_beta0.60_ct_width18_depth1_beta0.60.png" alt="CT (0.0009)">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT (0.0009)</figcaption>
-          </figure>
-        </div>
-      </div>
 
       <p style="font-size: 0.75em; font-style: italic; margin-top: 1em; color: #555;">
-        * Values in parentheses denote final binary cross-entropy loss.
-        Top row: 2-layer MLP with hidden width 12. (a) Baseline trained for 4000 steps, then fine-tuned for another 4000 steps using (b) LoRA (<span style="font-family: monospace;">r = 1</span>, <span style="font-family: monospace;">α = 1</span>) and (c) <em>Trainable CT</em>.
-        Bottom row: same setup with hidden width increased to 18.
+        * 2-layer MLP with hidden width 7. (a) Baseline trained for 4000 steps, then fine-tuned for another 4000 steps using (b) LoRA (<span style="font-family: monospace;">r = 1</span>, <span style="font-family: monospace;">α = 1</span>) and (c) <em>Trainable CT</em>.
       </p>
 
       <!-- Caption -->
       <div class="content" style="text-align: left; margin-top: 1.5em;">
         <p>
-          CT consistently achieves near-optimal loss regardless of model capacity, while methods operating solely on weights (e.g., LoRA) only approach optimality with higher model capacity.
+          CT smooths the pretrained model’s decision boundary to enhance local expressivity, whereas LoRA only adjusts segments of the piecewise affine boundary without improving expressivity.
         </p>
       </div>      
       
@@ -277,7 +253,7 @@
           \]
         </p>
         <p>
-          where $\beta \in \left[0, 1\right)$ modulates the curvature, $c \in \left[0, 1\right]$ is the mixing coefficient, and $\sigma(\cdot)$ denotes the sigmoid function. This is essentially a convex combination of reparameterized SiLU and SoftPlus:
+          where $\beta \in \left[0, 1\right]$ modulates the curvature, $c \in \left[0, 1\right]$ is the mixing coefficient, and $\sigma(\cdot)$ denotes the sigmoid function. This is essentially a convex combination of reparameterized SiLU and SoftPlus:
         </p>
         <p>
           \[
@@ -285,10 +261,27 @@
           \text{SoftPlus}(\mathbf{x}) = \frac{1}{\gamma} \cdot \ln\left[1 + \exp\left(\gamma \mathbf{x}\right)\right],\quad \gamma = \frac{1}{1 - \beta}
           \]
         </p>
-        <p>We provide two implementations of CT differing in how CTU is applied:</p>
+
+        <p>
+          These two activations are chosen because, based on the connection between deep networks and max-affine spline operators, each independently smooths the mapping of a ReLU-based network—transforming it from piecewise affine to fully nonlinear (details in the paper).
+        </p>
+        
+        <p>
+          However, each activation alone shifts the unit’s output mean—negatively for SiLU and positively for SoftPlus. 
+          When propagated through deep networks, this can alter decision boundaries or regression outputs, requiring retraining to correct. 
+          By combining them, we cancel out these shifts while preserving curvature control, as shown below:
+        </p>        
+
+        <div style="margin: 1.5rem; text-align: center;">
+          <img src="static/images/activation_functions.png" alt="Activation Function Biases" style="max-width: 100%; height: auto;">
+          <p style="font-size: 0.75em; font-style: italic; margin-top: 1em; color: #555;">
+            * The combined version sets $c = 0.5$.
+          </p>
+        </div>
+        <p>In practice, we provide two implementations of CT differing in how CTU is applied:</p>
         <ul style="margin-top: 1em;">
           <li>
-            <strong><em>CT</em> (for model steering):</strong> Replaces all ReLUs in the network with CTUs using a fixed \( c = 0.5 \) and a shared \( \beta \in [0, 1) \). This version is highly parameter-efficient—introducing only a single hyperparameter—and does not require backpropagation, making it suitable as a lightweight steering method.
+            <strong><em>CT</em> (for model steering):</strong> Replaces all ReLUs in the network with CTUs using a fixed \( c = 0.5 \) and a shared \( \beta \in [0, 1] \). This version is highly parameter-efficient—introducing only a single hyperparameter—and does not require backpropagation, making it suitable as a lightweight steering method.
           </li>
           <li style="margin-top: 0.75em;">
             <strong><em>Trainable CT</em> (for model finetuning):</strong> Also replaces all ReLUs with CTUs, but assigns each output neuron its own trainable pair \( (\beta, c) \), optimized via backpropagation. While it introduces additional parameters, the increase is modest compared to methods like LoRA and yields improved performance.
