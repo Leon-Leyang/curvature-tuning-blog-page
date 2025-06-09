@@ -195,30 +195,18 @@
       <div class="content" style="text-align: left;">
         <p>
           Modulating model non-linearities improves a model's local expressivity, while changing (but not adding) the model's weights alone cannot, making CT a complementary method to current finetuning approaches like LoRA.
-          A toy example demonstrating the advantage of modulating non-linearities is shown below:
+          A toy example of a binary classification task demonstrating the advantage of modulating non-linearities is shown below:
         </p>
       </div>      
 
-      <!-- Image grid -->
-      <div class="columns is-multiline is-variable is-1 is-centered">
-        <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 70%; margin: 0 auto;">
-            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_base.png" alt="Baseline">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">Baseline</figcaption>
+      <!-- Image -->
+      <div class="columns is-centered">
+        <div class="column is-full has-text-centered">
+          <figure class="image" style="margin: 0 auto;">
+            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_combined.gif" style="width: 100%;">
           </figure>
         </div>
-        <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 70%; margin: 0 auto;">
-            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_lora.gif" alt="LoRA">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">LoRA</figcaption>
-          </figure>
-        </div>
-        <div class="column is-one-third has-text-centered">
-          <figure class="image" style="max-width: 70%; margin: 0 auto;">
-            <img src="static/images/demo_toy_example_gif_width7_depth1_beta0.40_ct.gif" alt="CT">
-            <figcaption style="font-size: 0.85em; margin-top: 0.5em;">CT</figcaption>
-          </figure>
-        </div>
+      </div>
 
       <p style="font-size: 0.75em; font-style: italic; margin-top: 1em; color: #555;">
         * 2-layer MLP with hidden width 7. (a) Baseline trained for 4000 steps, then fine-tuned for another 4000 steps using (b) LoRA (<span style="font-family: monospace;">r = 1</span>, <span style="font-family: monospace;">α = 1</span>) and (c) <em>Trainable CT</em>.
