@@ -194,7 +194,7 @@
       <!-- Introductory text -->
       <div class="content" style="text-align: left;">
         <p>
-          Modulating the nonlinearities of a model's activation functions improves the local expressivity of its decision boundaries, while changing the model's weights alone cannot, making CT a complementary method to current finetuning approaches like LoRA.
+          Modulating the nonlinearities of a model's activation functions can control the curvature of the decision boundaries, while changing the model's weights alone cannot, making CT a complementary method to current finetuning approaches like LoRA.
           A toy example of a binary classification task demonstrating the advantage of modulating activation functions is shown below:
         </p>
       </div>      
@@ -215,7 +215,7 @@
       <!-- Caption -->
       <div class="content" style="text-align: left; margin-top: 1.5em;">
         <p>
-          CT smooths the pretrained model’s decision boundary to enhance local expressivity, whereas LoRA only adjusts segments of the piecewise affine boundary without improving expressivity.
+          Methods such as LoRA implicitly tune the slopes and breakpoints of the piecewise affine decision boundary, whereas CT changes the boundary's geometry.
         </p>
       </div>      
       
@@ -239,6 +239,12 @@
           \[
           \varphi_{\beta,c}(\mathbf{x}) = c \cdot \sigma\left(\frac{\beta \mathbf{x}}{1 - \beta}\right) \cdot \mathbf{x} + (1 - c) \cdot \ln\left[1 + \exp\left(\frac{\mathbf{x}}{1 - \beta}\right)\right] \cdot (1 - \beta)
           \]
+        </p>
+        <p style="font-size: 0.75em; font-style: italic; margin-top: 1em; color: #555;">
+          * In practice, for numerical stability we use 
+          \(\eta = \frac{\beta}{1 - \beta + \varepsilon}\) and 
+          \(\gamma = \frac{1}{1 - \beta + \varepsilon}\), 
+          where \(\varepsilon = 10^{-6}\) allows the method to remain well-defined at \(\beta = 1\).
         </p>
         <p>
           where $\beta \in \left[0, 1\right]$ modulates the curvature, $c \in \left[0, 1\right]$ is the mixing coefficient, and $\sigma(\cdot)$ denotes the sigmoid function. This is essentially a convex combination of reparameterized SiLU and SoftPlus:
@@ -484,7 +490,7 @@
 
         <p><strong>Theorem:</strong></p>
         <p style="font-family: monospace;">
-          For a ReLU network \( f: \mathbb{R}^d \to \mathbb{R} \) with parameter \( \mathbf{W} \) (collecting all weights and biases), for \( c \in [0, 1] \) and fixed \( \beta \in [0,1) \), replacing every instance of ReLU with a CTU with hyperparameters \( \beta, c \) is equivalent to projecting \( f \) to a smooth function \( f_{\beta,c} \) with bounded gradients and curvature, while keeping \( \mathbf{W} \) fixed. Importantly, for \( 0 < \beta < 1 \), \( f_{\beta,c} \) enjoys higher local expressivity than \( f \) for the same parameter \( \mathbf{W} \), due to non-vanishing local curvature.
+          For a ReLU network \( f: \mathbb{R}^d \to \mathbb{R} \) with parameter \( \mathbf{W} \) (collecting all weights and biases), for fixed \( c \in [0, 1] \) and \( \beta \in [0,1) \), replacing every instance of ReLU with a CTU with hyperparameters \( \beta, c \) is equivalent to projecting \( f \) to a smooth function \( f_{\beta,c} \) with bounded gradients and curvature, while keeping \( \mathbf{W} \) fixed. Importantly, for \( 0 < \beta < 1 \), \( f_{\beta,c} \) enjoys higher local expressivity than \( f \) for the same parameter \( \mathbf{W} \), due to non-vanishing local curvature.          
         </p>
       </div>
     </div>
@@ -503,7 +509,8 @@
       archivePrefix={arXiv},
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2502.07783}, 
-}</code></pre>
+}
+</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
